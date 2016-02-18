@@ -30,6 +30,15 @@ func Config() (conf config) {
 	if err = json.Unmarshal(b, &conf); err != nil {
 		log.Panic(err)
 	}
+	if conf.StripePublicKey == "" {
+		log.Panic("Stripe public key is missing from settings.json")
+	}
+	if conf.StripeSecretKey == "" {
+		log.Panic("Stripe secret key is missing from settings.json")
+	}
+	if conf.Port == 0 {
+		log.Panic("Port is missing from settings.json")
+	}
 	return
 }
 
